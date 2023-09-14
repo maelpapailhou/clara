@@ -1,0 +1,14 @@
+name: Clara
+version: '${project.version}'
+main: com.mael.Clara.Main
+api-version: '1.19'
+commands:
+  config:
+  heal:
+    description: remplis votre vie
+    usage: /heal
+  cc:
+  console:
+  help:
+  spawn:
+  pls:
