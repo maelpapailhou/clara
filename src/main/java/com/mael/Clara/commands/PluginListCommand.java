@@ -5,18 +5,16 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandConsole implements CommandExecutor {
+public class PluginListCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-
         if (commandSender instanceof Player) {
-            ((Player) commandSender).sendMessage("C'est que pour la console");
+            Player player = (Player) commandSender;
+            player.sendMessage("PLUGIN LIST");
 
-        } else {
-
-            System.out.println("Console");
         }
-
         return false;
+
     }
+
 }

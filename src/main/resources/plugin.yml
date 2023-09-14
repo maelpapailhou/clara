@@ -5,10 +5,17 @@ api-version: '1.19'
 commands:
   config:
   heal:
-    description: remplis votre vie
+    description: Restaure la vie du joueur.
     usage: /heal
-  cc:
+  hello:
+    description:
+      usage:
   console:
   help:
+    description: Obtenir de l'aide en jeu.
+    usage: /help
   spawn:
+    description: Retourne le joueur au point de spawn.
+    usage: /spawn
   pls:
+  t:

@@ -6,7 +6,7 @@
 
     <groupId>com</groupId>
     <artifactId>mael</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>Alpha1.0</version>
     <packaging>jar</packaging>
 
     <name>Clara</name>

@@ -1,4 +1,5 @@
 com/mael/Clara/commands/CommandArgs.class
+com/mael/Clara/events/VoidToSpawnListener.class
 com/mael/Clara/SubtitleManager.class
 com/mael/Clara/commands/HealCommand.class
 com/mael/Clara/events/PlayerDropItemListener.class

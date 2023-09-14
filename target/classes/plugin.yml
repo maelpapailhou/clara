@@ -1,14 +1,21 @@
 name: Clara
-version: '1.0-SNAPSHOT'
+version: 'Alpha1.0'
 main: com.mael.Clara.Main
 api-version: '1.19'
 commands:
   config:
   heal:
-    description: remplis votre vie
+    description: Restaure la vie du joueur.
     usage: /heal
-  cc:
+  hello:
+    description:
+      usage:
   console:
   help:
+    description: Obtenir de l'aide en jeu.
+    usage: /help
   spawn:
+    description: Retourne le joueur au point de spawn.
+    usage: /spawn
   pls:
+  t:

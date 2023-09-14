@@ -5,3 +5,9 @@ String-list:
   - 'Value1'
   - 'Value2'
   - 'Value3'
+spawn-coordinates:
+  x: -497.0
+  y: 119.0
+  z: 9.0
+  yaw: 180.0
+  pitch: 0.0
