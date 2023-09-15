@@ -27,9 +27,6 @@ public class SpawnCommand implements CommandExecutor {
            float yaw = (float) config.getDouble("spawn-coordinates.yaw");
            float pitch = (float) config.getDouble("spawn-coordinates.pitch");
 
-
-
-           // Créez une nouvelle location avec les coordonnées et la direction
            Location spawnLocation = new Location(p.getWorld(), x, y, z, yaw, pitch);
 
            p.teleport(spawnLocation);

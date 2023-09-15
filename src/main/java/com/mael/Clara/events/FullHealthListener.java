@@ -12,10 +12,8 @@ public class FullHealthListener implements Listener {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
 
-            // Annulez les dégâts pour garantir que le joueur a toujours une santé maximale
             player.setHealth(20);
 
-            // Annulez l'événement de dégâts
             event.setCancelled(true);
         }
     }

@@ -16,25 +16,29 @@ public class HelpCommand implements CommandExecutor {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
 
-            // Créez un message vide
             TextComponent message = new TextComponent("");
 
-            // Option 1 : Retourner au spawn
-            TextComponent option1 = new TextComponent(ChatColor.GREEN + "* Retourner au spawn");
-            option1.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/spawn"));
-            option1.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Cliquez pour retourner au spawn")));
+            TextComponent option1 = new TextComponent(ChatColor.GREEN + "* Comment jouer ?\n");
+            option1.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/help commentjouer"));
+            option1.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Apprenez comment jouer")));
 
-            // Option 2 : Exemple de commande 2
-            TextComponent option2 = new TextComponent("\n* Option 2");
-            option2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/commande2"));
-            option2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Exemple de commande 2")));
+            TextComponent option2 = new TextComponent(ChatColor.GREEN + "* Découvrir le lobby\n");
+            option2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/help lobby"));
+            option2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Explorez notre lobby et découvrez les règles du serveur")));
 
-            // Ajoutez les options au message principal
-            player.sendMessage("\n");
+            TextComponent option3 = new TextComponent(ChatColor.GREEN + "* Contacter le staff\n");
+            option3.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/help staff"));
+            option3.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Contactez notre équipe de modération et d'assistance en cas de besoin")));
+
+            TextComponent option4 = new TextComponent(ChatColor.RED + "* Signaler un joueur\n");
+            option4.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/report"));
+            option4.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Signalez un joueur si vous rencontrez des problèmes ou des comportements inappropriés")));
+
             message.addExtra(option1);
             message.addExtra(option2);
+            message.addExtra(option3);
+            message.addExtra(option4);
             player.spigot().sendMessage(message);
-            player.sendMessage("\n");
             player.sendMessage(ChatColor.GRAY + "Pour obtenir de l'aide, ouvrez le chat et cliquez sur l'option d'aide souhaitée.");
 
             return true;

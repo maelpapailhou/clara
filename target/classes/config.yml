@@ -1,13 +1,11 @@
-Word: 'Banana'
-Number: 52
-Boolean: true
-String-list:
-  - 'Value1'
-  - 'Value2'
-  - 'Value3'
+#Spawn
 spawn-coordinates:
-  x: -497.0
+  x: -497.5
   y: 119.0
-  z: 9.0
+  z: 8.5
   yaw: 180.0
   pitch: 0.0
+teleport-to-spawn-on-join: true
+default-gamemode: survival
+motd: "test"
+max-players: 12

@@ -1,7 +1,9 @@
 package com.mael.Clara.events;
 
 import com.mael.Clara.Main;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,19 +11,50 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class VoidToSpawnListener implements Listener {
     private Main main;
+    private Map<UUID, Integer> voidCountMap = new HashMap<>();
+    private Map<UUID, Long> lastVoidTimeMap = new HashMap<>();
+    private long voidCooldownMillis = 5 * 60 * 1000; // 5 minutes en millisecondes
+
 
     public VoidToSpawnListener(Main main) {
         this.main = main;
     }
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        // Vérifiez si le joueur est en Y inférieur à 10
         Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        String playerName = player.getName();
 
-        if (event.getPlayer().getLocation().getY() < 20) {
-            // Téléportez le joueur aux coordonnées spécifiques (x: 100, y: 100, z: 100)
+
+        // Vérifiez si le joueur est en Y inférieur à 20
+        if (event.getTo() != null && event.getTo().getY() < 20) {
+            // Vérifiez si le joueur est en cooldown pour éviter le spam
+            long currentTime = System.currentTimeMillis();
+            long lastVoidTime = lastVoidTimeMap.getOrDefault(playerUUID, 0L);
+
+            if (currentTime - lastVoidTime >= voidCooldownMillis) {
+                // Le joueur n'est pas en cooldown, réinitialisez le compteur
+                voidCountMap.put(playerUUID, 1);
+                lastVoidTimeMap.put(playerUUID, currentTime);
+            } else {
+                // Le joueur est en cooldown, incrémente le compteur
+                int voidCount = voidCountMap.getOrDefault(playerUUID, 0) + 1;
+                voidCountMap.put(playerUUID, voidCount);
+
+                // Envoyez un message approprié en fonction du compteur
+                if (voidCount == 2) {
+                    player.sendMessage(ChatColor.GRAY + "Tu ne peux pas te suicider ! Mdr.");
+                } else if (voidCount == 3) {
+                    player.sendMessage(ChatColor.GRAY + "Ecoute " + playerName + ", profite de la vie et reste en jeu. \nFais " + org.bukkit.ChatColor.AQUA + "/grr jte mange" + org.bukkit.ChatColor.GRAY +" pour nous montrer que t'es d'accord :)");
+                }
+                // Vous pouvez continuer à ajouter des cas pour plus de messages si nécessaire
+            }
 
             FileConfiguration config = main.getConfig();
             double x = config.getDouble("spawn-coordinates.x");
@@ -30,7 +63,10 @@ public class VoidToSpawnListener implements Listener {
             float yaw = (float) config.getDouble("spawn-coordinates.yaw");
             float pitch = (float) config.getDouble("spawn-coordinates.pitch");
 
-            player.teleport(new Location(player.getWorld(), x, y, z, yaw, pitch));
+            Location newLocation = new Location(player.getWorld(), x, y, z, yaw, pitch);
+            player.teleport(newLocation);
+            player.playSound(newLocation, Sound.ENTITY_ENDER_DRAGON_FLAP, 1.0f, 1.0f);
+
         }
     }
 

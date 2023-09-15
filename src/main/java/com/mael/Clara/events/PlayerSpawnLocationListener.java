@@ -1,6 +1,8 @@
 package com.mael.Clara.events;
 
+import com.mael.Clara.Main;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,12 +10,25 @@ import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
 public class PlayerSpawnLocationListener implements Listener {
 
+    private final Main main;
+
+    public PlayerSpawnLocationListener(Main main) {
+        this.main = main;
+    }
+
     @EventHandler
     public void spawnLocation(PlayerSpawnLocationEvent e) {
         Player player = e.getPlayer();
+        FileConfiguration config = main.getConfig();
 
-        Location spawnLocation = new Location(player.getWorld(), -497, 119, 9);
+        double x = config.getDouble("spawn-coordinates.x");
+        double y = config.getDouble("spawn-coordinates.y");
+        double z = config.getDouble("spawn-coordinates.z");
+        float yaw = (float) config.getDouble("spawn-coordinates.yaw");
+        float pitch = (float) config.getDouble("spawn-coordinates.pitch");
+
+        Location spawnLocation = new Location(player.getWorld(), x, y, z, yaw, pitch);
         e.setSpawnLocation(spawnLocation);
-
     }
 }
+

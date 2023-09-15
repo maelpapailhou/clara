@@ -1,5 +1,6 @@
 name: Clara
 version: 'Alpha1.0'
+author: fatal97412x
 main: com.mael.Clara.Main
 api-version: '1.19'
 commands:
@@ -19,3 +20,7 @@ commands:
     usage: /spawn
   pls:
   t:
+  pluginlist:
+  profile:
+  clara:
+  gameselection:
