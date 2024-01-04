@@ -1,6 +1,6 @@
 package com.mael.Clara.events;
 
-import com.mael.Clara.Main;
+import com.mael.Clara.CiaraSpawn;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -16,13 +16,13 @@ import java.util.Map;
 import java.util.UUID;
 
 public class VoidToSpawnListener implements Listener {
-    private Main main;
+    private CiaraSpawn main;
     private Map<UUID, Integer> voidCountMap = new HashMap<>();
     private Map<UUID, Long> lastVoidTimeMap = new HashMap<>();
     private long voidCooldownMillis = 5 * 60 * 1000; // 5 minutes en millisecondes
 
 
-    public VoidToSpawnListener(Main main) {
+    public VoidToSpawnListener(CiaraSpawn main) {
         this.main = main;
     }
     @EventHandler

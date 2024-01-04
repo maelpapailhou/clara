@@ -32,14 +32,14 @@ public class HelpCommand implements CommandExecutor {
 
             TextComponent option4 = new TextComponent(ChatColor.RED + "* Signaler un joueur\n");
             option4.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/report"));
-            option4.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Signalez un joueur si vous rencontrez des problèmes ou des comportements inappropriés")));
+            option4.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GRAY + "Signalefsdfqdsfdsfqsdfdsz un joueur si vous rencontrez des problèmes ou des comportements inappropriés")));
 
             message.addExtra(option1);
             message.addExtra(option2);
             message.addExtra(option3);
             message.addExtra(option4);
             player.spigot().sendMessage(message);
-            player.sendMessage(ChatColor.GRAY + "Pour obtenir de l'aide, ouvrez le chat et cliquez sur l'option d'aide souhaitée.");
+            player.sendMessage(ChatColor.GRAY + "Pour test de l'aide, ouvrez le chat et cliquez sur l'option d'aide souhaitée.");
 
             return true;
         }

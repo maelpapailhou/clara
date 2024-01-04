@@ -1,4 +1,4 @@
-package com.mael.Clara;
+package com.mael.Clara.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;

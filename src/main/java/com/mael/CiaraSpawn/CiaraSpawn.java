@@ -2,23 +2,26 @@ package com.mael.Clara;
 
 import com.mael.Clara.commands.*;
 import com.mael.Clara.events.*;
+import com.mael.Clara.managers.BossBarManager;
+import com.mael.Clara.managers.TimeManager;
 import com.mael.Clara.menus.GameSelectionMenu;
 import com.mael.Clara.menus.ProfileMenu;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
-public final class Main extends JavaPlugin implements Listener {
+public final class CiaraSpawn extends JavaPlugin implements Listener {
     private FileConfiguration config; // Déclarer l'objet FileConfiguration
-    private static Main instance;
+    private static CiaraSpawn instance;
 
     @Override
     public void onEnable() {
 
         //Enabling
         instance = this;
-        System.out.println("[Clara] Enabling");
+        System.out.println("[CiaraSpawn] Enabling");
 
         // Commands
         getCommand("help").setExecutor(new HelpCommand());
@@ -49,7 +52,6 @@ public final class Main extends JavaPlugin implements Listener {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         this.saveDefaultConfig(); // Copier le fichier de configuration par défaut s'il n'existe pas encore
-        this.config = this.getConfig();
 
         Bukkit.getServer().setDefaultGameMode(GameMode.SURVIVAL);
 
@@ -57,15 +59,17 @@ public final class Main extends JavaPlugin implements Listener {
         TimeManager timeManager = new TimeManager(this, getServer().getWorlds().get(0));
         timeManager.start();
 
-
-        }
+        // Boss Bar
+        BossBarManager bossBarManager = new BossBarManager(this);
+        bossBarManager.startUpdating();
+    }
 
     @Override
     public void onDisable() {
-        System.out.println("[Clara] Disabling");
+        System.out.println("[CiaraSpawn] Disabling");
     }
 
-    public static Main getInstance() {
+    public static CiaraSpawn getInstance() {
         return instance;
     }
 }

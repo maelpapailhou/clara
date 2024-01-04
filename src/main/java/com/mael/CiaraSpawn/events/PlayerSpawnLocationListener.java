@@ -1,6 +1,6 @@
 package com.mael.Clara.events;
 
-import com.mael.Clara.Main;
+import com.mael.Clara.CiaraSpawn;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -10,9 +10,9 @@ import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
 public class PlayerSpawnLocationListener implements Listener {
 
-    private final Main main;
+    private final CiaraSpawn main;
 
-    public PlayerSpawnLocationListener(Main main) {
+    public PlayerSpawnLocationListener(CiaraSpawn main) {
         this.main = main;
     }
 

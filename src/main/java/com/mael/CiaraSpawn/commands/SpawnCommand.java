@@ -1,6 +1,6 @@
 package com.mael.Clara.commands;
 
-import com.mael.Clara.Main;
+import com.mael.Clara.CiaraSpawn;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,9 +11,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class SpawnCommand implements CommandExecutor {
 
-    private Main main;
+    private CiaraSpawn main;
 
-    public SpawnCommand(Main main) {
+    public SpawnCommand(CiaraSpawn main) {
         this.main = main;
     }
     @Override
@@ -34,5 +34,7 @@ public class SpawnCommand implements CommandExecutor {
        }
 
         return false;
+
     }
+
 }

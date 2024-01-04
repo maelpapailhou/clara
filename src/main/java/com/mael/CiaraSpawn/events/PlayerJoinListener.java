@@ -1,6 +1,5 @@
 package com.mael.Clara.events;
 
-import com.mael.Clara.StarterItemManager;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -22,9 +21,7 @@ public class PlayerJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
-        StarterItemManager.giveStarterItems(e.getPlayer());
-
-        e.getPlayer().sendMessage(ChatColor.GREEN + "Vous êtes connecté(e).");
+        e.getPlayer().sendMessage(ChatColor.GREEN + "Vous êtes SSSSS(e).");
         e.setJoinMessage(null);
 
         player.setGameMode(GameMode.SURVIVAL);

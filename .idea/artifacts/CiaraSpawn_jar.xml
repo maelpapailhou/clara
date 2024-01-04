@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CiaraSpawn:jar">
+    <output-path>$USER_HOME$/Documents/Serveur/Lobby/plugins/CiaraSpawn</output-path>
+    <root id="archive" name="CiaraSpawn.jar">
+      <element id="module-output" name="CiaraSpawn" />
+    </root>
+  </artifact>
+</component>

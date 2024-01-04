@@ -33,10 +33,18 @@ public class ItemJoinListener implements Listener {
         ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta headMeta = (SkullMeta) playerHead.getItemMeta();
         headMeta.setOwningPlayer(player);
-        headMeta.setDisplayName(ChatColor.AQUA + player.getName() + ChatColor.GRAY + " (Appuyez)");
+        headMeta.setDisplayName(ChatColor.GREEN + "Votre profil" + ChatColor.GRAY + " (Appuyez)");
         playerHead.setItemMeta(headMeta);
         player.getInventory().setItem(4, playerHead);
 
+        ItemStack shop = new ItemStack(Material.GOLD_INGOT);
+        ItemMeta shopMeta = shop.getItemMeta();
+        shopMeta.setDisplayName(ChatColor.YELLOW + "Boutique" + ChatColor.GRAY + " (Appuyez)");
+        shopMeta.setLore(Collections.singletonList(ChatColor.GRAY + "Ouvrez le menu de jeux"));
+        shopMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_ENCHANTS,
+                ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_POTION_EFFECTS, ItemFlag.HIDE_UNBREAKABLE);
+        shop.setItemMeta(shopMeta);
+        player.getInventory().setItem(3, shop);
 
     }
 
@@ -47,10 +55,11 @@ public class ItemJoinListener implements Listener {
 
         // Vérifier si l'item est une boussole
         if (item != null && item.getType() == Material.COMPASS) {
-            // Vérifier si le joueur a cliqué avec le bouton droit
-            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                // Exécutez la commande associée (dans cet exemple, "/spawn")
-                String command = "/spawn"; // Changez cette commande en celle que vous souhaitez exécuter
+            // Vérifier si le joueur a cliqué avec le bouton droit ou gauche
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK ||
+                    event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
+                // Exécutez la commande associée ("/gameselection" dans cet exemple)
+                String command = "gameselection"; // Commande que vous souhaitez exécuter
                 Bukkit.dispatchCommand(player, command);
             }
         }

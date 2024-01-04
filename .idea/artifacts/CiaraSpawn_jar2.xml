@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CiaraSpawn:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/CiaraSpawn_jar2</output-path>
+    <root id="archive" name="CiaraSpawn.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$USER_HOME$/serveur_ssh/Ciara/lobby/plugins/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="CiaraSpawn" />
+    </root>
+  </artifact>
+</component>

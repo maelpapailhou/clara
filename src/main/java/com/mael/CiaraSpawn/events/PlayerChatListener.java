@@ -1,6 +1,6 @@
 package com.mael.Clara.events;
 
-import com.mael.Clara.Main;
+import com.mael.Clara.CiaraSpawn;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -30,7 +30,7 @@ public class PlayerChatListener implements Listener {
         messageComponent.setColor(ChatColor.WHITE);
         TextComponent formattedMessage = new TextComponent(playerNameComponent, messageComponent);
 
-        Main.getInstance().getServer().spigot().broadcast(formattedMessage);
+        CiaraSpawn.getInstance().getServer().spigot().broadcast(formattedMessage);
         event.setCancelled(true);
     }
 }
