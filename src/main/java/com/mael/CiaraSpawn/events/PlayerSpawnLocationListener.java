@@ -1,6 +1,6 @@
-package com.mael.Clara.events;
+package com.mael.CiaraSpawn.events;
 
-import com.mael.Clara.CiaraSpawn;
+import com.mael.CiaraSpawn.CiaraSpawn;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

@@ -1,4 +1,4 @@
-package com.mael.Clara.events;
+package com.mael.CiaraSpawn.events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -21,7 +21,7 @@ public class PlayerJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
-        e.getPlayer().sendMessage(ChatColor.GREEN + "Vous êtes SSSSS(e).");
+        e.getPlayer().sendMessage(ChatColor.GREEN + "X êtes connecté(e).");
         e.setJoinMessage(null);
 
         player.setGameMode(GameMode.SURVIVAL);
@@ -35,9 +35,9 @@ public class PlayerJoinListener implements Listener {
             lastLoginMap.put(playerUUID, currentTime);
             String welcomeMessage;
             if (timeDifference >= 10 * 24 * 60 * 60 * 1000) {
-                welcomeMessage = "Bonjour, " + playerName + " !";
+                welcomeMessage = "C, " + playerName + " !";
             } else {
-                welcomeMessage = "Rebonjour, " + playerName + " !";
+                welcomeMessage = "CC, " + playerName + " !";
             }
 
             e.getPlayer().sendMessage(welcomeMessage);

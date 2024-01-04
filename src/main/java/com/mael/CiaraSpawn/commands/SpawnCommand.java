@@ -1,13 +1,12 @@
-package com.mael.Clara.commands;
+package com.mael.CiaraSpawn.commands;
 
-import com.mael.Clara.CiaraSpawn;
+import com.mael.CiaraSpawn.CiaraSpawn;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class SpawnCommand implements CommandExecutor {
 

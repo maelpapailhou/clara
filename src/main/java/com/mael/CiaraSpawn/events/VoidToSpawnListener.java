@@ -1,6 +1,6 @@
-package com.mael.Clara.events;
+package com.mael.CiaraSpawn.events;
 
-import com.mael.Clara.CiaraSpawn;
+import com.mael.CiaraSpawn.CiaraSpawn;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,9 +48,9 @@ public class VoidToSpawnListener implements Listener {
 
                 // Envoyez un message approprié en fonction du compteur
                 if (voidCount == 2) {
-                    player.sendMessage(ChatColor.GRAY + "Tu ne peux pas te suicider ! Mdr.");
+                    player.sendMessage(ChatColor.GRAY + "Vous ne pouvez pas vous suicider.");
                 } else if (voidCount == 3) {
-                    player.sendMessage(ChatColor.GRAY + "Ecoute " + playerName + ", profite de la vie et reste en jeu. \nFais " + org.bukkit.ChatColor.AQUA + "/grr jte mange" + org.bukkit.ChatColor.GRAY +" pour nous montrer que t'es d'accord :)");
+                    player.sendMessage(ChatColor.GRAY + "Le Soleil brille, les oiseaux chantent, vous jouez sur CiaraCube. La vie est belle.");
                 }
                 // Vous pouvez continuer à ajouter des cas pour plus de messages si nécessaire
             }

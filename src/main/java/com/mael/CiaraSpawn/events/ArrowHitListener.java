@@ -1,4 +1,4 @@
-package com.mael.Clara.events;
+package com.mael.CiaraSpawn.events;
 
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;

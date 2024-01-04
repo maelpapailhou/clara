@@ -1,30 +1,40 @@
-package com.mael.Clara;
+package com.mael.CiaraSpawn;
 
-import com.mael.Clara.commands.*;
-import com.mael.Clara.events.*;
-import com.mael.Clara.managers.BossBarManager;
-import com.mael.Clara.managers.TimeManager;
-import com.mael.Clara.menus.GameSelectionMenu;
-import com.mael.Clara.menus.ProfileMenu;
+import com.mael.CiaraSpawn.menus.GameSelectionMenu;
+import com.mael.CiaraSpawn.menus.ProfileMenu;
 import org.bukkit.*;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
+import com.mael.CiaraSpawn.commands.*;
+import com.mael.CiaraSpawn.events.*;
+import com.mael.CiaraSpawn.managers.*;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
 
 public final class CiaraSpawn extends JavaPlugin implements Listener {
-    private FileConfiguration config; // Déclarer l'objet FileConfiguration
+    private FileConfiguration config;
     private static CiaraSpawn instance;
+    private BossBarManager bossBarManager;
 
     @Override
     public void onEnable() {
 
-        //Enabling
+
         instance = this;
         System.out.println("[CiaraSpawn] Enabling");
 
+        WeatherManager.setClearWeather();
+
         // Commands
-        getCommand("help").setExecutor(new HelpCommand());
+        getCommand("help").setExecutor(new HelpCommand(this.getConfig()));
         getCommand("spawn").setExecutor(new SpawnCommand(this));
         getCommand("t").setExecutor(new TimeCommand());
         getCommand("pluginlist").setExecutor(new PluginListCommand());
@@ -33,43 +43,61 @@ public final class CiaraSpawn extends JavaPlugin implements Listener {
         getCommand("gameselection").setExecutor(new GameSelectionMenu());
 
         // Listeners
-        Bukkit.getPluginManager().registerEvents(this, this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerDropItemListener(), this);
-        getServer().getPluginManager().registerEvents(new BlockInteractionListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerSpawnLocationListener(this), this);
-        getServer().getPluginManager().registerEvents(new FullHealthListener(), this);
-        getServer().getPluginManager().registerEvents(new ArrowHitListener(), this);
-        getServer().getPluginManager().registerEvents(new FullFoodListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPingListener(), this);
-        getServer().getPluginManager().registerEvents(new VoidToSpawnListener(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
-        getServer().getPluginManager().registerEvents(new ItemJoinListener(), this);
-        getServer().getPluginManager().registerEvents(new ItemSpawnListener(this), this);
-        getServer().getPluginManager().registerEvents(new InventoryProtectionListener(), this);
+        registerEvent(new PlayerJoinListener());
+        registerEvent(new PlayerDropItemListener());
+        registerEvent(new BlockInteractionListener());
+        registerEvent(new PlayerSpawnLocationListener(this));
+        registerEvent(new FullHealthListener());
+        registerEvent(new ArrowHitListener());
+        registerEvent(new FullFoodListener());
+        registerEvent(new OnPingListener());
+        registerEvent(new VoidToSpawnListener(this));
+        registerEvent(new PlayerChatListener());
+        registerEvent(new ItemSpawnListener(this));
+        registerEvent(new InventoryProtectionListener());
+        registerEvent(new ItemJoinListener(this));
 
         // Config
-        getConfig().options().copyDefaults();
+        getConfig().options().copyDefaults(true);
         saveDefaultConfig();
-        this.saveDefaultConfig(); // Copier le fichier de configuration par défaut s'il n'existe pas encore
 
+        // Set default game mode
         Bukkit.getServer().setDefaultGameMode(GameMode.SURVIVAL);
 
-        // ALways day
+        // Always day
         TimeManager timeManager = new TimeManager(this, getServer().getWorlds().get(0));
         timeManager.start();
 
-        // Boss Bar
-        BossBarManager bossBarManager = new BossBarManager(this);
-        bossBarManager.startUpdating();
+        Player player = Bukkit.getPlayer("NomDuJoueur"); // Remplacez par le nom d'un joueur
+        if (player != null) {
+            SubtitleManager.sendSubtitle(player, "&aBienvenue sur le serveur !");
+        }
+
+        // Enregistrer les événements
+        getServer().getPluginManager().registerEvents(this, this);
+
+        //Bossbar
+        bossBarManager = new BossBarManager(this);
+        getServer().getPluginManager().registerEvents(this, this);
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e){
+        bossBarManager.addPlayer(e.getPlayer());
     }
 
     @Override
     public void onDisable() {
         System.out.println("[CiaraSpawn] Disabling");
+
     }
 
     public static CiaraSpawn getInstance() {
         return instance;
     }
+
+    private void registerEvent(Listener listener) {
+        getServer().getPluginManager().registerEvents(listener, this);
+    }
+
 }

@@ -1,10 +1,8 @@
-package com.mael.Clara.events;
+package com.mael.CiaraSpawn.events;
 
-import com.mael.Clara.CiaraSpawn;
-import org.bukkit.Bukkit;
+import com.mael.CiaraSpawn.CiaraSpawn;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class SetTimeListener implements Listener {

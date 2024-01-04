@@ -1,4 +1,4 @@
-package com.mael.Clara.menus;
+package com.mael.CiaraSpawn.menus;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;

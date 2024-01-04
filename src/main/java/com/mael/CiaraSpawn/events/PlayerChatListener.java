@@ -1,11 +1,10 @@
-package com.mael.Clara.events;
+package com.mael.CiaraSpawn.events;
 
-import com.mael.Clara.CiaraSpawn;
+import com.mael.CiaraSpawn.CiaraSpawn;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

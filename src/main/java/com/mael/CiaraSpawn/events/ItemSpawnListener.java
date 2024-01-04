@@ -1,6 +1,6 @@
-package com.mael.Clara.events;
+package com.mael.CiaraSpawn.events;
 
-import com.mael.Clara.CiaraSpawn;
+import com.mael.CiaraSpawn.CiaraSpawn;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -31,7 +31,7 @@ public class ItemSpawnListener implements Listener {
         double spawnX = config.getDouble("spawn-coordinates.x");
         double spawnZ = config.getDouble("spawn-coordinates.z");
 
-        double maxDistance = 100.0; // La distance maximale à laquelle l'item doit apparaître
+        double maxDistance = 50.0; // La distance maximale à laquelle l'item doit apparaître
 
         double distanceX = Math.abs(playerLocation.getX() - spawnX);
         double distanceZ = Math.abs(playerLocation.getZ() - spawnZ);

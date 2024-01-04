@@ -1,4 +1,4 @@
-package com.mael.Clara.commands;
+package com.mael.CiaraSpawn.commands;
 
 import org.bukkit.Particle;
 import org.bukkit.command.Command;

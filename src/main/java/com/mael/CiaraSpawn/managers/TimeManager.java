@@ -1,4 +1,4 @@
-package com.mael.Clara.managers;
+package com.mael.CiaraSpawn.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
