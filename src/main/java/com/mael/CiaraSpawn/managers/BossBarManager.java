@@ -23,19 +23,12 @@ public class BossBarManager {
         this.currentIndex = 0;
 
         // Ajoutez autant de messages que vous le souhaitez avec différentes configurations
-        barMessages.add(new BarMessage(ChatColor.BLUE + "Message 1", BarColor.GREEN, 100));
-        barMessages.add(new BarMessage(ChatColor.RED + "Message 2", BarColor.RED, 100));
+        barMessages.add(new BarMessage(ChatColor.BLUE + "Message 1", BarColor.GREEN, 500));
+        barMessages.add(new BarMessage(ChatColor.RED + "Message 2", BarColor.RED, 500));
 
         bossBar = createBossBar(barMessages.get(0));
         bossBar.setProgress(1.0);
         scheduleNextMessage(plugin);
-    }
-
-    private BossBar createBossBar(BarMessage barMessage) {
-        return Bukkit.createBossBar(
-                barMessage.getMessage(),
-                barMessage.getBarColor(),
-                BarStyle.SEGMENTED_6);
     }
 
     public void addPlayer(Player player) {
@@ -46,15 +39,21 @@ public class BossBarManager {
         bossBar.removePlayer(player);
     }
 
+    private BossBar createBossBar(BarMessage barMessage) {
+        return Bukkit.createBossBar(
+                barMessage.getMessage(),
+                barMessage.getBarColor(),
+                BarStyle.SOLID);
+    }
+
     private void scheduleNextMessage(JavaPlugin plugin) {
         new BukkitRunnable() {
             @Override
             public void run() {
                 currentIndex = (currentIndex + 1) % barMessages.size();
                 updateBossBar(barMessages.get(currentIndex));
-                scheduleNextMessage(plugin);
             }
-        }.runTaskLater(plugin, barMessages.get(currentIndex).getDuration());
+        }.runTaskTimer(plugin, 0L, 100L); // La tâche se répète toutes les 20 ticks (1 seconde)
     }
 
     private void updateBossBar(BarMessage barMessage) {
@@ -87,6 +86,4 @@ public class BossBarManager {
             return duration;
         }
     }
-
-
 }

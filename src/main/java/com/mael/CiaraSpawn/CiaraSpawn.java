@@ -81,9 +81,13 @@ public final class CiaraSpawn extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
     }
 
+    public void addPlayer(Player player) {
+        bossBarManager.addPlayer(player);
+    }
+
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
-        bossBarManager.addPlayer(e.getPlayer());
+        addPlayer(e.getPlayer());
     }
 
     @Override
